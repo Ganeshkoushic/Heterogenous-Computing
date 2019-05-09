@@ -1,0 +1,16 @@
+#!/bin/sh
+#PBS -q mamba
+#PBS –N  Vector_add
+#PBS -l nodes=1:ppn=1:gpus=1
+#PBS -l walltime=00:01:00\
+### run job
+module load cuda/9.2
+cd $PBS_O_WORKDIR
+echo "hostname: `hostname -s` ..."
+if [ ! -e hello ]; then 
+	echo -e "running:  make Vector_add ...\n          \c"
+	make Vector_add
+fi
+echo -e "running:  ./Vector_add ...\n          \c"
+./Vector_add
+echo ""
